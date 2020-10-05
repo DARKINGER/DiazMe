@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Unidad_2;
+package U2_Acceso;
 
 import javax.swing.DefaultListModel;
 
@@ -19,7 +19,7 @@ public class Fibo extends javax.swing.JFrame {
     DefaultListModel<String> Lista = new DefaultListModel();
     public Fibo() {
         initComponents();
-         Lista = new DefaultListModel<String>();
+         Lista = new DefaultListModel<>();
         LtsListaFibo.setModel(Lista);
     }
 
@@ -94,7 +94,7 @@ public class Fibo extends javax.swing.JFrame {
         try{
              Lista.clear();
         LtsListaFibo.setModel(Lista);
-          int Val1=0, Val2=0, contador=10, i=1;
+          int Val1, Val2, contador=10, i=1;
       Val1=Integer.parseInt(txtVal1.getText());
       Val2=Integer.parseInt(txtVal2.getText());
       while(i <= contador )
@@ -111,8 +111,8 @@ public class Fibo extends javax.swing.JFrame {
 				}
       txtVal1.setText(null);
       txtVal2.setText(null);
-        }catch(Exception x){
-            System.out.print(x);
+        }catch(NumberFormatException x){
+            System.out.print(x.getMessage());
         }
         
        
@@ -147,23 +147,18 @@ public class Fibo extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Fibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Fibo().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Fibo().setVisible(true);
         });
     }
 

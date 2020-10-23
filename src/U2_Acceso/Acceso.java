@@ -5,6 +5,7 @@
  */
 package U2_Acceso;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,13 +14,37 @@ import javax.swing.JOptionPane;
  */
 public class Acceso extends javax.swing.JFrame {
 
+    ArrayList<String> Usuarios = new ArrayList<>();
+    ArrayList<String> PassWord = new ArrayList<>();
+    int ReferenciaUsrPss;
+    
     /**
      * Creates new form Acceso
      */
     public Acceso() {
         initComponents();
+        Generar();
     }
-
+    
+        private void Generar(){
+            
+        Usuarios.add("Alex");
+        Usuarios.add("Gerardo");
+        Usuarios.add("Gema");
+        Usuarios.add("Nataly");
+        Usuarios.add("Armando");
+        Usuarios.add("Ana");
+        Usuarios.add("Sandra");
+        
+        PassWord.add("a2020");
+        PassWord.add("Gera2020");
+        PassWord.add("Gem2020");
+        PassWord.add("N2020");
+        PassWord.add("Arm2020");
+        PassWord.add("Ana2020");
+        PassWord.add("S2020");
+        }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,6 +152,29 @@ public class Acceso extends javax.swing.JFrame {
         Cancelar();
     }//GEN-LAST:event_btnCancelarKeyPressed
 
+    boolean Respuesta = true;
+    
+    private void Verificar(String UsrIntroducido, String PssIntroducido){
+       
+        for(int x = 0  ; x<Usuarios.size(); x++){
+            String UsrActual = Usuarios.get(x);
+            if(UsrIntroducido.equals(UsrActual)){
+               // ReferenciaUsrPss = x;
+                String PssActual = PassWord.get(x);
+                if(PssIntroducido.equals(PssActual)){
+                    Respuesta = true;
+                    break;
+                }else{
+                   Respuesta = false;
+                    break;
+                }
+            }else{
+                Respuesta = false;
+            }
+        }
+    }
+    
+    
     private void Cancelar(){
         JOptionPane.showMessageDialog(null,"Operacion cancelada" );
         txtNombre.setText(null);
@@ -139,7 +187,21 @@ public class Acceso extends javax.swing.JFrame {
         strNombre = txtNombre.getText();
         pswPasswor = new String(pswContraseña.getPassword());
         
-        if (strNombre.equals("Alex") && pswPasswor.equals("A1020")){
+        Verificar(strNombre, pswPasswor);
+        
+        if(Respuesta == true){
+            strResultado = "Acceso concedido";
+            this.setVisible(false);
+            //abrir un JFrame            
+            Fibo Num = new Fibo();
+            Num.setVisible(true);
+            JOptionPane.showMessageDialog(null,strResultado );
+        }else{
+            strResultado = "Acceso denegado";
+            JOptionPane.showMessageDialog(null,strResultado );
+        }
+        
+       /* if (strNombre.equals("Alex") && pswPasswor.equals("A1020")){
             strResultado = "Acceso concedido";
             this.setVisible(false);
             //abrir un JFrame            
@@ -151,8 +213,10 @@ public class Acceso extends javax.swing.JFrame {
             strResultado = "Acceso denegao";
             JOptionPane.showMessageDialog(null,strResultado );
         }
-        
+        */
     }
+    
+    
     
     /**
      * @param args the command line arguments

@@ -16,7 +16,6 @@ public class Acceso extends javax.swing.JFrame {
 
     ArrayList<String> Usuarios = new ArrayList<>();
     ArrayList<String> PassWord = new ArrayList<>();
-    int ReferenciaUsrPss;
     
     /**
      * Creates new form Acceso
@@ -159,7 +158,6 @@ public class Acceso extends javax.swing.JFrame {
         for(int x = 0  ; x<Usuarios.size(); x++){
             String UsrActual = Usuarios.get(x);
             if(UsrIntroducido.equals(UsrActual)){
-               // ReferenciaUsrPss = x;
                 String PssActual = PassWord.get(x);
                 if(PssIntroducido.equals(PssActual)){
                     Respuesta = true;

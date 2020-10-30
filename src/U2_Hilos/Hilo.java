@@ -49,6 +49,50 @@ public class Hilo {
        }
 
 
-        System.out.println("Hilo main (FINAL)");
+        System.out.println("Hilo main (FINAL)\n\n\n\n\n");
+        
+        CorrerDos();
+    }
+    
+    private static void CorrerDos(){
+        System.out.print("Metodo Secundario (Inicio)");
+     
+     HiloUno primerHilo = new HiloUno("Hilo numero uno (Metodo)");
+     HiloUno SegundoHilo = new HiloUno("Hilo numero dos (Metodo)");
+     HiloUno TercerHilo = new HiloUno("Hilo numero tres (Metodo)");
+     
+     Thread varHiloUno = new Thread(primerHilo); 
+     Thread varHiloDos = new Thread(SegundoHilo); 
+     Thread varHiloTres = new Thread(TercerHilo); 
+     
+     
+     varHiloUno.start();
+     varHiloDos.start();
+     varHiloTres.start();
+     
+     
+     for(int x = 0; x<=30; x++){
+         
+         System.out.print("-");
+         
+         try{
+         Thread.sleep(200);
+         
+         }catch(InterruptedException ex){
+                System.out.println("Metodo Secundario interrupido");
+         }
+     }
+     
+      try {
+           
+           varHiloUno.join();
+           varHiloDos.join();
+           varHiloTres.join();
+       } catch (InterruptedException exc){
+           System.out.println("Junta los hilos");
+       }
+
+
+        System.out.println("Metodo Secundario (FINAL)");
     }
 }
